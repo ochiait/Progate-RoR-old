@@ -1,0 +1,14 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE "schema_migrations" ("version" varchar NOT NULL);
+INSERT INTO "schema_migrations" VALUES('20160801000010');
+INSERT INTO "schema_migrations" VALUES('20160801000020');
+INSERT INTO "schema_migrations" VALUES('20160801000030');
+INSERT INTO "schema_migrations" VALUES('20160801000040');
+INSERT INTO "schema_migrations" VALUES('20160801000050');
+INSERT INTO "schema_migrations" VALUES('20160801000100');
+CREATE TABLE "notes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "content" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "user_id" integer);
+CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "image" varchar, "encrypted_password" varchar DEFAULT '' NOT NULL);
+CREATE TABLE "likes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "note_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL);
+CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version");
+COMMIT;
